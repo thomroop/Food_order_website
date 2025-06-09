@@ -1,21 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
-import Login from "../Pages/Login";
 
-const initial = JSON.parse (localStorage.getitem('auth')) ||{
-    isAuthenticated : false,
-    user:null, //(username: admin, role 'admin')
-}
+import { createSlice } from '@reduxjs/toolkit';
+
+const savedAuth = JSON.parse(localStorage.getItem('auth'));
+
+const initialState = savedAuth || {
+  isAuthenticated: false,
+  user: null, 
+};
 
 const authSlice = createSlice({
-    name: 'auth', 
-    initialState: initial,
-    reducers:{
-        Login:(state, action) =>{ //payload
-            console.log (action)
+  name: 'auth',
+  initialState,
+  reducers: {
+    login: (state, action) => {
+      const { username, role } = action.payload;
+      state.isAuthenticated = true;
+      state.user = { username, role };
+      localStorage.setItem('auth', JSON.stringify(state));
+    },
+    logout: (state) => {
+      state.isAuthenticated = false;
+      state.user = null;
+      localStorage.removeItem('auth');
+    },
+  },
+});
 
-        }
-    }
-})
-
-export const {login} = authSlice.actions
-export default authSlice.reducer
+export const { login, logout } = authSlice.actions;
+export default authSlice.reducer;

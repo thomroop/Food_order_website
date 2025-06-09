@@ -2,22 +2,22 @@ import React from 'react';
 
 const ProductCard = ({ product }) => {
   const addToCart = () => {
-    // Get existing cart from localStorage or empty array
-    const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+    const existingCart = JSON.parse(localStorage.getItem('cartItems')) || []; // Get existing cart from localStorage or empty array
 
-    // Check if product already in cart
-    const index = existingCart.findIndex(item => item.id === product.id);
+   
+    const index = existingCart.findIndex(item => item.id === product.id); // Check if product already in cart
 
     if (index !== -1) {
-      // Product exists, increase quantity
-      existingCart[index].quantity += 1;
+     
+      existingCart[index].quantity += 1;  // Product exists, increase quantity
     } else {
-      // Add product with quantity 1
-      existingCart.push({ ...product, quantity: 1 });
+      
+      existingCart.push({ ...product, quantity: 1 }); // Add product with quantity 1
     }
 
-    // Save updated cart to localStorage
-    localStorage.setItem('cartItems', JSON.stringify(existingCart));
+    
+    localStorage.setItem('cartItems', JSON.stringify(existingCart)); // Save updated cart to localStorage
 
     alert(`${product.name} added to cart!`);
   };
@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
 
       <button
         onClick={addToCart}
-        className="mt-2 bg-gray-500 text-white py-1 px-4 rounded hover:bg-green-600"
+        className="mt-2 bg-gray-500 text-white py-1 px-4 rounded hover:bg-red-600"
       >
         Add to Cart
       </button>

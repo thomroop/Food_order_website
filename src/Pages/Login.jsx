@@ -1,60 +1,63 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const username = e.target.username.value;
     const password = e.target.password.value;
 
-    let role = 'user';
     if (username === 'admin' && password === 'admin123') {
-      role = 'admin';
-    }
-
-    // Save role & login status
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('role', role);
-
-    // Redirect
-    if (role === 'admin') {
-      window.location.href = '/admin';
+      dispatch(login({ username, role: 'admin' }));
+      navigate('/admin');
     } else {
-      window.location.href = '/';
+      dispatch(login({ username, role: 'user' }));
+      navigate('/menu');
     }
   };
 
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/images/background1.jpg')" }} // 👈 Background image path
+      style={{ backgroundImage: "url('/images/background1.jpg')" }} 
     >
-      <div className="bg-yellow bg-opacity-90 backdrop-blur-md shadow-lg rounded-lg overflow-hidden w-full max-w-md p-8">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login to Instant Munch</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-yellow bg-opacity-90 backdrop-blur-md shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm"
+      >
+        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Login</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-            required
-          />
-          <button
-            type="submit"
-            className="w-full bg-red-500 hover:bg-yellow-600 text-black font-semibold py-2 rounded-md transition"
-          >
-            Sign In
-          </button>
-        </form>
-      </div>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          required
+          placeholder="Username"
+          className="w-full mb-4 p-2 border rounded"
+        />
+
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          placeholder="Password"
+          className="w-full mb-4 p-2 border rounded"
+        />
+
+        <button
+          type="submit"
+          className="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 };
