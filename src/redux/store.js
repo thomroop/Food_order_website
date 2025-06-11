@@ -9,5 +9,6 @@ const store = configureStore({
     products: productReducer, 
   },
 });
+console.log("Auth file loaded");
 
 export default store;
