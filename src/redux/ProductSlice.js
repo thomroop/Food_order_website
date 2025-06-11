@@ -1,4 +1,4 @@
-// src/redux/productSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
