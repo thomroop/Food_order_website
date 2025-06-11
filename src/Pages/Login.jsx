@@ -39,7 +39,7 @@ const Login = () => {
           type="text"
           required
           placeholder="Username"
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded placeholder-yellow-500"
         />
 
         <input
@@ -48,7 +48,7 @@ const Login = () => {
           type="password"
           required
           placeholder="Password"
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded placeholder-yellow-500"
         />
 
         <button
