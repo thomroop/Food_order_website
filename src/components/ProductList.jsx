@@ -6,7 +6,6 @@ const ProductList = () => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
 
-  // Filter products based on category and search input
   const filteredProducts = products.filter((product) => {
     const matchesCategory = category ? product.category === category : true;
     const matchesSearch = product.name.toLowerCase().includes(search.trim().toLowerCase());
@@ -15,7 +14,7 @@ const ProductList = () => {
 
   return (
     <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
-      {/* Search Input */}
+   
       <input
         type="text"
         placeholder="Search food..."
@@ -24,7 +23,7 @@ const ProductList = () => {
         className="mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
       />
 
-      {/* Category Buttons */}
+     
       <div className="mb-6 flex flex-wrap gap-2">
         {['All', 'Pizza', 'Burger', 'Pasta', 'Donuts', 'Sandwich'].map((cat) => (
           <button
@@ -41,12 +40,12 @@ const ProductList = () => {
         ))}
       </div>
 
-      {/* Heading */}
+     
       <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800 dark:text-white">
         {category ? `${category} Items` : 'All Products'}
       </h2>
 
-      {/* Product Grid */}
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.length === 0 ? (
           <p className="col-span-full text-center text-gray-500">No products found.</p>

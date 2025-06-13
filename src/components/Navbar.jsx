@@ -17,20 +17,19 @@ const NavBar = () => {
     <nav className="bg-gray-800 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
         
-        {/* Left: Logo */}
+      
         <div className="flex items-center space-x-3">
           <img src="/images/logo.png" alt="Instant Munch Logo" className="h-10 w-auto" />
           <div className="text-xl font-bold select-none">Instant Munch</div>
         </div>
 
-        {/* Center: Welcome message */}
         {isAuthenticated && user?.username && (
           <div className="text-yellow-300 font-semibold text-center sm:flex-1">
             Welcome, {user.username}
           </div>
         )}
 
-        {/* Right: Navigation links */}
+       
         <div className="flex flex-wrap justify-center sm:justify-end gap-4">
           <NavLink
             to="/"
