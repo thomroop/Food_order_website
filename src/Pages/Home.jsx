@@ -6,24 +6,32 @@ const Home = () => {
 
   return (
     <div
-      className="h-screen bg-cover bg-center flex flex-col justify-center items-center"
+      className="h-screen bg-cover bg-center relative"
       style={{ backgroundImage: "url('/images/background.jpg')" }}
-    > <div className="p-4 absolute top-0 left-0">
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0  flex flex-col items-center justify-center text-center px-4">
+        
+        {/* Logo */}
         <img
-        src="/images/logo.png"
-        alt="Logo"
-        className="h-20 w-auto mb-6"
-      />
+          src="/images/logo.png"
+          alt="Logo"
+          className="h-20 w-auto absolute top-6 left-6"
+        />
+
+        {/* Heading */}
+        <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          Fresh, fast, and full of flavor..
+        </h1>
+
+        {/* CTA Button */}
+        <button
+          className="bg-red-600 hover:bg-red-700 text-white text-lg font-semibold py-3 px-8 rounded transition"
+          onClick={() => navigate('/menu')}
+        >
+          Order Now
+        </button>
       </div>
-      <h1 className="text-white text-5xl font-bold mb-6 text-center">
-        Fresh, fast, and full of flavor..
-      </h1>
-      <button
-        className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded"
-        onClick={() => navigate('/menu')}
-      >
-        Order Now
-      </button>
     </div>
   );
 };

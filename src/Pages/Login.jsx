@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/authSlice';
+import { login } from '../redux/slice/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -24,36 +24,46 @@ const Login = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/images/background1.jpg')" }} 
+      className="min-h-screen flex items-center justify-center bg-cover bg-center px-4 py-12"
+      style={{ backgroundImage: "url('/images/background1.jpg')" }}
     >
       <form
         onSubmit={handleSubmit}
-        className="bg-yellow bg-opacity-90 backdrop-blur-md shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm"
+        className="bg-brown-dark -100 bg-opacity-90 backdrop-blur-md shadow-lg rounded-xl px-8 pt-6 pb-8 w-full max-w-sm"
       >
-        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
 
-        <input
-          id="username"
-          name="username"
-          type="text"
-          required
-          placeholder="Username"
-          className="w-full mb-4 p-2 border rounded placeholder-yellow-500"
-        />
+        <div className="mb-4">
+          <label htmlFor="username" className="block text-gray-700 font-medium mb-1">
+            Username
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            required
+            placeholder="Enter username"
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          />
+        </div>
 
-        <input
-          id="password"
-          name="password"
-          type="password"
-          required
-          placeholder="Password"
-          className="w-full mb-4 p-2 border rounded placeholder-yellow-500"
-        />
+        <div className="mb-6">
+          <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            placeholder="Enter password"
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          />
+        </div>
 
         <button
           type="submit"
-          className="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full"
+          className="w-full bg-red-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-300"
         >
           Login
         </button>

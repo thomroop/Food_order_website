@@ -1,16 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+// Safely load products from localStorage
+const loadFromLocalStorage = () => {
+  try {
+    const data = localStorage.getItem('products');
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error('Error parsing products from localStorage:', error);
+    return [];
+  }
+};
 
 const initialState = {
-  products: savedProducts, // Initialize from localStorage if available
+  products: loadFromLocalStorage(),
 };
 
 const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // Set all products (used for initial loading)
+    // Set all products (used for loading from an API or admin panel)
     setProducts: (state, action) => {
       state.products = action.payload;
       localStorage.setItem('products', JSON.stringify(state.products));
@@ -42,3 +51,4 @@ const productSlice = createSlice({
 
 export const { setProducts, addProduct, editProduct, deleteProduct } = productSlice.actions;
 export default productSlice.reducer;
+

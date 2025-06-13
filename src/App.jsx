@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 
 import Home from './Pages/Home';
 import ProductList from './components/ProductList';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar';
 import About from './Pages/About';
 import Login from './Pages/Login';
 import Contact from './Pages/Contact';
 import Admin from './Pages/Admin';
+import Cart from './Pages/Cart';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Cart" element={<Cart />} />
 
         {/* ✅ Protect Admin route using Redux */}
         <Route

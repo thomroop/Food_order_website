@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../redux/authSlice';
+import { logout } from '../redux/slice/authSlice';
 
 const NavBar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <nav className="bg-gray-800 text-white shadow-md">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
         
         {/* Left: Logo */}
         <div className="flex items-center space-x-3">
@@ -24,16 +24,14 @@ const NavBar = () => {
         </div>
 
         {/* Center: Welcome message */}
-        <div className="flex-1 text-center">
-          {isAuthenticated && user?.username && (
-            <span className="text-yellow-300 font-semibold">
-              Welcome, {user.username}
-            </span>
-          )}
-        </div>
+        {isAuthenticated && user?.username && (
+          <div className="text-yellow-300 font-semibold text-center sm:flex-1">
+            Welcome, {user.username}
+          </div>
+        )}
 
-        {/* Right: Navigation Links */}
-        <div className="space-x-6 flex items-center">
+        {/* Right: Navigation links */}
+        <div className="flex flex-wrap justify-center sm:justify-end gap-4">
           <NavLink
             to="/"
             end
@@ -62,7 +60,6 @@ const NavBar = () => {
             Cart
           </NavLink>
 
-          {/* Admin Panel link */}
           {isAuthenticated && user?.role === 'admin' && (
             <NavLink
               to="/admin"
@@ -74,9 +71,6 @@ const NavBar = () => {
             </NavLink>
           )}
 
-          
-
-          {/* Login/Logout toggle */}
           {!isAuthenticated ? (
             <NavLink
               to="/login"
@@ -110,5 +104,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
