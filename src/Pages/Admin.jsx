@@ -36,7 +36,7 @@ const Admin = () => {
     <div className="p-4 sm:p-6 max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-600">Admin Dashboard</h1>
 
-      {/* Product Form */}
+    
       <form
         onSubmit={handleAddProduct}
         className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-lg shadow-md mb-10"
@@ -92,7 +92,7 @@ const Admin = () => {
         </button>
       </form>
 
-      {/* Product List */}
+    
       <h2 className="text-2xl font-semibold mb-4">Product List</h2>
       <div className="space-y-4">
         {products.length === 0 ? (

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// Safely load products from localStorage
+
 const loadFromLocalStorage = () => {
   try {
     const data = localStorage.getItem('products');
@@ -19,19 +19,19 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // Set all products (used for loading from an API or admin panel)
+   
     setProducts: (state, action) => {
       state.products = action.payload;
       localStorage.setItem('products', JSON.stringify(state.products));
     },
 
-    // Add a new product
+    
     addProduct: (state, action) => {
       state.products.push(action.payload);
       localStorage.setItem('products', JSON.stringify(state.products));
     },
 
-    // Edit a product by ID
+    
     editProduct: (state, action) => {
       const { id, updatedProduct } = action.payload;
       const index = state.products.findIndex((product) => product.id === id);
@@ -41,7 +41,7 @@ const productSlice = createSlice({
       }
     },
 
-    // Delete a product by ID
+    
     deleteProduct: (state, action) => {
       state.products = state.products.filter((product) => product.id !== action.payload);
       localStorage.setItem('products', JSON.stringify(state.products));

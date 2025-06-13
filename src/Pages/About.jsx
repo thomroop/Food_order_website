@@ -11,7 +11,7 @@ const About = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 py-10 bg-[#fdfef5] min-h-screen">
       
-      {/* Left: Text Content */}
+   
       <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
         <h1 className="text-3xl sm:text-5xl font-bold mb-4 text-gray-900">ABOUT US</h1>
         
@@ -34,7 +34,7 @@ const About = () => {
         </button>
       </div>
 
-      {/* Right: Image */}
+    
       <div className="md:w-1/2 flex justify-center">
         <img
           src="/images/aboutpage.webp"

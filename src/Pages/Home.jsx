@@ -9,22 +9,22 @@ const Home = () => {
       className="h-screen bg-cover bg-center relative"
       style={{ backgroundImage: "url('/images/background.jpg')" }}
     >
-      {/* Dark overlay for readability */}
+      
       <div className="absolute inset-0  flex flex-col items-center justify-center text-center px-4">
         
-        {/* Logo */}
+    
         <img
           src="/images/logo.png"
           alt="Logo"
           className="h-20 w-auto absolute top-6 left-6"
         />
 
-        {/* Heading */}
+ 
         <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
           Fresh, fast, and full of flavor..
         </h1>
 
-        {/* CTA Button */}
+   
         <button
           className="bg-red-600 hover:bg-red-700 text-white text-lg font-semibold py-3 px-8 rounded transition"
           onClick={() => navigate('/menu')}

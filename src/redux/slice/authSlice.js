@@ -1,7 +1,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-// Load saved auth from localStorage (if any)
+
 const savedAuth = (() => {
   try {
     return JSON.parse(localStorage.getItem('auth')) || {
