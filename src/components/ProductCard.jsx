@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="border p-4 rounded-lg shadow-md bg-white dark:bg-yellow-100 transition-all">
+    <div className="border p-4 rounded-lg shadow-md bg-yellow-50 dark:bg-gray-200 transition-transform transform hover:scale-105 hover:z-10 focus:scale-105 focus:z-10 relative">
       <img
         src={product.image}
         alt={product.name}
