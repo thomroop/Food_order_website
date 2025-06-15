@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast'; 
 
 const Contact = () => {
   const handleSubmit = (e) => {
@@ -10,6 +11,9 @@ const Contact = () => {
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Message:', message);
+
+     toast.success('Message sent successfully! 📬');
+    e.target.reset(); 
   };
 
   return (
@@ -77,3 +81,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slice/authSlice';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast'; 
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,10 +16,14 @@ const Login = () => {
 
     if (username === 'admin' && password === 'admin123') {
       dispatch(login({ username, role: 'admin' }));
+      toast.success('Welcome Admin! 🎉'); 
       navigate('/admin');
-    } else {
+    } else if (username && password) {
       dispatch(login({ username, role: 'user' }));
+      toast.success(`Welcome ${username}! 👋`);
       navigate('/menu');
+    } else {
+      toast.error('Invalid credentials ❌'); 
     }
   };
 

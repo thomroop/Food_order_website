@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
 import Home from './Pages/Home';
 import ProductList from './components/ProductList';
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       {/* Show NavBar only if not on Home page */}
       {location.pathname !== '/' && <NavBar />}
 
