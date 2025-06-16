@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slice/authSlice';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast'; 
+import { useNavigate, NavLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,19 +11,34 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const username = e.target.username.value;
+    const name = e.target.name.value;
     const password = e.target.password.value;
 
-    if (username === 'admin' && password === 'admin123') {
-      dispatch(login({ username, role: 'admin' }));
-      toast.success('Welcome Admin! 🎉'); 
+    // Admin login (hardcoded)
+    if (name === 'admin' && password === 'admin123') {
+      dispatch(login({ username: 'Admin', role: 'admin' }));
+      toast.success('Welcome Admin! 🎉');
       navigate('/admin');
-    } else if (username && password) {
-      dispatch(login({ username, role: 'user' }));
-      toast.success(`Welcome ${username}! 👋`);
-      navigate('/menu');
+      return;
+    }
+
+    // Check localStorage for registered users
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const existingUser = users.find(
+      (user) => user.name === name && user.password === password
+    );
+
+    if (existingUser) {
+      dispatch(login({ username: existingUser.name, role: existingUser.role }));
+      toast.success(`Welcome ${existingUser.name}! 👋`);
+
+      if (existingUser.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/menu');
+      }
     } else {
-      toast.error('Invalid credentials ❌'); 
+      toast.error('Invalid credentials ❌');
     }
   };
 
@@ -34,20 +49,20 @@ const Login = () => {
     >
       <form
         onSubmit={handleSubmit}
-        className="bg-brown-dark -100 bg-opacity-90 backdrop-blur-md shadow-lg rounded-xl px-8 pt-6 pb-8 w-full max-w-sm"
+        className="bg-white bg-opacity-90 backdrop-blur-md shadow-lg rounded-xl px-8 pt-6 pb-8 w-full max-w-sm"
       >
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 font-medium mb-1">
-            Username
+          <label htmlFor="name" className="block text-gray-700 font-medium mb-1">
+            Name
           </label>
           <input
-            id="username"
-            name="username"
+            id="name"
+            name="name"
             type="text"
             required
-            placeholder="Enter username"
+            placeholder="Enter your name"
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
         </div>
@@ -72,9 +87,17 @@ const Login = () => {
         >
           Login
         </button>
+
+        <p className="mt-4 text-sm text-center">
+          Don’t have an account?{' '}
+          <NavLink to="/register" className="text-yellow-600 hover:underline font-medium">
+            Register
+          </NavLink>
+        </p>
       </form>
     </div>
   );
 };
 
 export default Login;
+

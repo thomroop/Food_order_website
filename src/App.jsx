@@ -10,6 +10,8 @@ import Login from './Pages/Login';
 import Contact from './Pages/Contact';
 import Admin from './Pages/Admin';
 import Cart from './Pages/Cart';
+import Register from './Pages/Register';
+import UserPanel from './Pages/Userpanel';
 
 function App() {
   const location = useLocation();
@@ -27,7 +29,20 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* ✅ Protected user panel route */}
+        <Route
+          path="/user-panel"
+          element={
+            isAuthenticated && user?.role === 'user' ? (
+              <UserPanel />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
         {/* ✅ Protect Admin route using Redux */}
         <Route
@@ -46,3 +61,4 @@ function App() {
 }
 
 export default App;
+

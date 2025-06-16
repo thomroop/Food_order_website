@@ -27,7 +27,7 @@ const Home = () => {
    
         <button
           className="bg-red-600 hover:bg-red-700 text-white text-lg font-semibold py-3 px-8 rounded transition"
-          onClick={() => navigate('/menu')}
+          onClick={() => navigate('/login')}
         >
           Order Now
         </button>
