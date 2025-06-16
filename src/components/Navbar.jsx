@@ -29,7 +29,7 @@ const NavBar = () => {
   return (
     <nav className="bg-gray-800 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
-        {/* Logo + App Name */}
+      
         <div className="flex items-center space-x-3">
           <img
             src="/images/logo.png"
@@ -39,14 +39,14 @@ const NavBar = () => {
           <div className="text-xl font-bold select-none">Instant Munch</div>
         </div>
 
-        {/* Welcome user */}
+      
         {isAuthenticated && user?.username && (
           <div className="text-yellow-300 font-semibold text-center sm:flex-1">
             Welcome, {user.username}
           </div>
         )}
 
-        {/* Nav Links */}
+       
         <div className="flex flex-wrap justify-center sm:justify-end gap-4 items-center">
           <NavLink
             to="/"

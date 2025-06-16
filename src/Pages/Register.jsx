@@ -8,7 +8,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    role: 'user', // default to user
+    role: 'user', 
   });
 
   const handleChange = (e) => {

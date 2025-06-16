@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 const UserPanel = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-  // ✅ Protect route: allow only 'user' role
+  //  Protect route: allow only 'user' role
   if (!isAuthenticated || user?.role !== 'user') {
     return <Navigate to="/login" replace />;
   }
