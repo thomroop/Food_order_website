@@ -95,7 +95,7 @@ const Cart = () => {
             </button>
           </div>
 
-          {/* Show policies below the cart */}
+          
           <PolicySection />
         </>
       )}

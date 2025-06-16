@@ -11,10 +11,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const email = e.target.name.value; // 'name' input field is used for email
+    const email = e.target.name.value; 
     const password = e.target.password.value;
 
-    // Admin login (hardcoded)
+    
     if (email === 'admin' && password === 'admin123') {
       dispatch(login({ username: 'Admin', role: 'admin' }));
       toast.success('Welcome Admin! 🎉');
@@ -22,7 +22,7 @@ const Login = () => {
       return;
     }
 
-    // Check localStorage for registered users
+    
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const existingUser = users.find(
       (user) => user.email === email && user.password === password
