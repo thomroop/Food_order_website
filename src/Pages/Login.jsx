@@ -11,11 +11,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
+    const email = e.target.name.value; // 'name' input field is used for email
     const password = e.target.password.value;
 
     // Admin login (hardcoded)
-    if (name === 'admin' && password === 'admin123') {
+    if (email === 'admin' && password === 'admin123') {
       dispatch(login({ username: 'Admin', role: 'admin' }));
       toast.success('Welcome Admin! 🎉');
       navigate('/admin');
@@ -25,7 +25,7 @@ const Login = () => {
     // Check localStorage for registered users
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const existingUser = users.find(
-      (user) => user.name === name && user.password === password
+      (user) => user.email === email && user.password === password
     );
 
     if (existingUser) {
@@ -55,14 +55,14 @@ const Login = () => {
 
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-medium mb-1">
-            Name
+            Email
           </label>
           <input
             id="name"
             name="name"
             type="text"
             required
-            placeholder="Enter your name"
+            placeholder="Enter your email"
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
         </div>
@@ -100,4 +100,3 @@ const Login = () => {
 };
 
 export default Login;
-
